@@ -1,3 +1,5 @@
+using LancheAPI.Business;
+using LancheAPI.Business.Interfaces;
 using LancheAPI.Model.Context;
 using LancheAPI.Repositories;
 using LancheAPI.Repositories.Interfaces;
@@ -7,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System;
 
 namespace LancheAPI
 {
@@ -24,11 +27,13 @@ namespace LancheAPI
         {
             services.AddControllers();
             services.AddDbContext<AppDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddApiVersioning();
             services.AddScoped<IUsuarioRepository, UsuarioRepository >();
+            services.AddScoped<IUsuarioBusiness, UsuarioBusiness>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IServiceProvider serviceProvider)
         {
             if (env.IsDevelopment())
             {
@@ -45,6 +50,7 @@ namespace LancheAPI
             {
                 endpoints.MapControllers();
             });
+            serviceProvider.GetRequiredService<AppDbContext>().Database.Migrate();
         }
     }
 }

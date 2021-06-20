@@ -1,9 +1,12 @@
 ﻿using LancheAPI.Model;
+using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace LancheAPI.Repositories.Interfaces
+namespace LancheAPI.Business.Interfaces
 {
-    public interface IUsuarioRepository
+    public interface IUsuarioBusiness
     {
         Usuario CriarUsuario(Usuario usuario);
         Usuario AtualizarUsuario(Usuario usuario);

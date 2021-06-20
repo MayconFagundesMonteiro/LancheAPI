@@ -70,6 +70,11 @@ namespace LancheAPI.Repositories
             }
         }
 
+        public Usuario EncontrarPorId(int id)
+        {
+            return _context.Usuarios.SingleOrDefault(u => u.Id.Equals(id));
+        }
+
         public List<Usuario> ListarTodosUsuarios()
         {
             return _context.Usuarios.ToList();
