@@ -1,9 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using LancheAPI.Model;
+using LancheAPI.Repositories.Interfaces;
+using Microsoft.AspNetCore.Mvc;
 
 namespace LancheAPI.Controllers
 {
@@ -11,10 +8,38 @@ namespace LancheAPI.Controllers
     [Route("[controller]")]
     public class UsuarioController : ControllerBase
     {
-        public IActionResult Teste()
+        private readonly IUsuarioRepository _repository;
+
+        public UsuarioController(IUsuarioRepository usuarioRepositoty)
         {
-            return null;
+            _repository = usuarioRepositoty;
         }
 
+        [HttpGet]
+        public IActionResult Get() //Lista todos os usuarios cadastrados
+        {
+            return Ok(_repository.ListarTodosUsuarios());
+        }
+
+        [HttpPost]
+        public IActionResult Post([FromBody] Usuario usuario) //Cria um novo Usuario
+        {
+            if (usuario == null) return BadRequest();
+            return Ok(_repository.CriarUsuario(usuario));
+        }
+
+        [HttpPut]
+        public IActionResult Put([FromBody] Usuario usuario) //Atualiza Cadastro Usuario
+        {
+            if (usuario == null) return BadRequest();
+            return Ok(_repository.AtualizarUsuario(usuario));
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id) //Deleta Usuarios
+        {
+            _repository.DeletarUsuarios(id);
+            return NoContent();
+        }
     }
 }
