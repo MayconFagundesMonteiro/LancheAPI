@@ -26,6 +26,12 @@ namespace LancheAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options => options.AddDefaultPolicy(builder =>
+            {
+                builder.AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader();
+            }));
             services.AddControllers();
             services.AddDbContext<AppDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddApiVersioning();
@@ -55,6 +61,8 @@ namespace LancheAPI
             app.UseRouting();
 
             app.UseAuthorization();
+            
+            app.UseCors();
 
             app.UseEndpoints(endpoints =>
             {
