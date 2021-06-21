@@ -5,11 +5,13 @@ using LancheAPI.Repositories;
 using LancheAPI.Repositories.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Rewrite;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Net.Http.Headers;
+using Microsoft.OpenApi.Models;
 using System;
 
 namespace LancheAPI
@@ -46,6 +48,21 @@ namespace LancheAPI
                 options.FormatterMappings.SetMediaTypeMappingForFormat("json", MediaTypeHeaderValue.Parse("application/json"));
             })
             .AddXmlSerializerFormatters();
+
+            services.AddSwaggerGen(c => {
+                c.SwaggerDoc("v1",
+                    new OpenApiInfo
+                    {
+                        Title = "LancheAPI",
+                        Version = "v1",
+                        Description = "API Rest simples, tendo como exemplo venda de lanches online.",
+                        Contact = new OpenApiContact
+                        {
+                            Name = "Maycon Fagundes",
+                            Url = new Uri("https://www.linkedin.com/in/maycon-fagundes-349538205")
+                        }
+                    });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -61,7 +78,18 @@ namespace LancheAPI
             app.UseRouting();
 
             app.UseAuthorization();
-            
+
+            app.UseSwagger();
+
+            app.UseSwaggerUI(c => {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json",
+                    "Lanche API - API Rest simples, tendo como exemplo venda de lanches online.");
+            });
+
+            var option = new RewriteOptions();
+            option.AddRedirect("^$", "swagger");
+            app.UseRewriter(option);
+
             app.UseCors();
 
             app.UseEndpoints(endpoints =>

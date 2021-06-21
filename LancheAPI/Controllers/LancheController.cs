@@ -1,6 +1,7 @@
 ﻿using LancheAPI.Business.Interfaces;
 using LancheAPI.Data.VO;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 
 namespace LancheAPI.Controllers
 {
@@ -16,6 +17,11 @@ namespace LancheAPI.Controllers
             _lancheBusiness = lanche;
         }
 
+
+        [ProducesResponseType((200), Type = typeof(LancheVO))]  //Produces Reponses Cria Respostas customizadas para o swagger
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
@@ -24,6 +30,10 @@ namespace LancheAPI.Controllers
             return Ok(result);
         }
 
+        [ProducesResponseType((200), Type = typeof(List<LancheVO>))]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
         [HttpGet]
         public IActionResult Get()
         {
@@ -31,6 +41,9 @@ namespace LancheAPI.Controllers
             return Ok(lista);
         }
 
+        [ProducesResponseType((200), Type = typeof(LancheVO))]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
         [HttpPost]
         public IActionResult Post ([FromBody] LancheVO lanche)
         {
@@ -38,6 +51,9 @@ namespace LancheAPI.Controllers
             return Ok(_lancheBusiness.CriarLanche(lanche));
         }
 
+        [ProducesResponseType((200), Type = typeof(LancheVO))]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
         [HttpPut]
         public IActionResult Put ([FromBody] LancheVO lanche)
         {
@@ -45,6 +61,9 @@ namespace LancheAPI.Controllers
             return Ok(_lancheBusiness.AtualizarLanche(lanche));
         }
 
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
