@@ -7,25 +7,25 @@ namespace LancheAPI.Business
 {
     public class UsuarioBusiness : IUsuarioBusiness
     {
-        private readonly IUsuarioRepository _repository;
+        private readonly IGenericRepository<Usuario> _repository;
 
-        public UsuarioBusiness(IUsuarioRepository repository)
+        public UsuarioBusiness(IGenericRepository<Usuario> repository)
         {
             _repository = repository;
         }
         public Usuario AtualizarUsuario(Usuario usuario)
         {
-            return _repository.AtualizarUsuario(usuario);
+            return _repository.Atualizar(usuario);
         }
 
         public Usuario CriarUsuario(Usuario usuario)
         {
-            return _repository.CriarUsuario(usuario);
+            return _repository.Criar(usuario);
         }
 
         public void DeletarUsuarios(int id)
         {
-            _repository.DeletarUsuarios(id);
+            _repository.Deletar(id);
         }
 
         public Usuario EncontrarPorId(int id)
@@ -35,7 +35,7 @@ namespace LancheAPI.Business
 
         public List<Usuario> ListarTodosUsuarios()
         {
-            return _repository.ListarTodosUsuarios();
+            return _repository.ListarTodos();
         }
     }
 }

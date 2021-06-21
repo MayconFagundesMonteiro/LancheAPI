@@ -1,32 +1,34 @@
-﻿using LancheAPI.Model;
+﻿using LancheAPI.Model.Base;
 using LancheAPI.Model.Context;
 using LancheAPI.Repositories.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace LancheAPI.Repositories
 {
-    public class UsuarioRepository : IUsuarioRepository
+    public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
     {
         private readonly AppDbContext _context;
+        private readonly DbSet<T> dataSet;
 
-        public UsuarioRepository(AppDbContext context)
+        public GenericRepository(AppDbContext context)
         {
             _context = context;
+            dataSet = _context.Set<T>();
         }
 
-
-        public Usuario AtualizarUsuario(Usuario usuario)
+        public T Atualizar(T item)
         {
-            var result = _context.Usuarios.SingleOrDefault(u => u.Id.Equals(usuario.Id));
+            var result = dataSet.SingleOrDefault(x => x.Id.Equals(item.Id));
             if (result != null)
             {
                 try
                 {
-                    _context.Entry(result).CurrentValues.SetValues(usuario);
+                    _context.Entry(result).CurrentValues.SetValues(item);
                     _context.SaveChanges();
-                    return usuario;
+                    return result;
                 }
                 catch (Exception)
                 {
@@ -39,13 +41,13 @@ namespace LancheAPI.Repositories
             }
         }
 
-        public Usuario CriarUsuario(Usuario usuario)
+        public T Criar(T item)
         {
             try
             {
-                _context.Usuarios.Add(usuario);
+                dataSet.Add(item);
                 _context.SaveChanges();
-                return usuario;
+                return item;
             }
             catch (Exception)
             {
@@ -53,14 +55,14 @@ namespace LancheAPI.Repositories
             }
         }
 
-        public void DeletarUsuarios(int id)
+        public void Deletar(int id)
         {
-            var result = _context.Usuarios.SingleOrDefault(u => u.Id.Equals(id));
-            if (result != null)
+            var item = dataSet.SingleOrDefault(x => x.Id.Equals(id));
+            if(item != null)
             {
                 try
                 {
-                    _context.Usuarios.Remove(result);
+                    dataSet.Remove(item);
                     _context.SaveChanges();
                 }
                 catch (Exception)
@@ -70,14 +72,14 @@ namespace LancheAPI.Repositories
             }
         }
 
-        public Usuario EncontrarPorId(int id)
+        public T EncontrarPorId(int id)
         {
-            return _context.Usuarios.SingleOrDefault(u => u.Id.Equals(id));
+            return dataSet.SingleOrDefault(x => x.Id.Equals(id));
         }
 
-        public List<Usuario> ListarTodosUsuarios()
+        public List<T> ListarTodos()
         {
-            return _context.Usuarios.ToList();
+            return dataSet.ToList();
         }
     }
 }

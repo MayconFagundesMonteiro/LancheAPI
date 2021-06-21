@@ -1,10 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using LancheAPI.Model.Base;
+using System.ComponentModel.DataAnnotations;
 
 namespace LancheAPI.Model
 {
-    public class Usuario
+    public class Usuario : BaseEntity
     {
-        public int Id{ get; set; }
         [Required]
         public string Nome { get; set; }
         public string Sobrenome { get; set; }
