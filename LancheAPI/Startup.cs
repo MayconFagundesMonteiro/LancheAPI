@@ -1,6 +1,6 @@
 using LancheAPI.Business;
 using LancheAPI.Business.Interfaces;
-using LancheAPI.Model.Context;
+using LancheAPI.Models.Context;
 using LancheAPI.Repositories;
 using LancheAPI.Repositories.Interfaces;
 using Microsoft.AspNetCore.Builder;
@@ -29,6 +29,7 @@ namespace LancheAPI
             services.AddDbContext<AppDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddApiVersioning();
             services.AddScoped<IUsuarioBusiness, UsuarioBusiness>();
+            services.AddScoped<ILancheBusiness, LancheBusiness>();
             services.AddScoped(typeof(IGenericRepository<>),typeof(GenericRepository<>));
         }
 

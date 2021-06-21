@@ -1,4 +1,4 @@
-﻿using LancheAPI.Model;
+﻿using LancheAPI.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

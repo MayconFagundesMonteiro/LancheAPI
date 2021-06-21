@@ -1,4 +1,4 @@
-﻿namespace LancheAPI.Model.Base
+﻿namespace LancheAPI.Models.Base
 {
     public class BaseEntity
     {

@@ -1,4 +1,4 @@
-﻿using LancheAPI.Model.Base;
+﻿using LancheAPI.Models.Base;
 using System.Collections.Generic;
 
 namespace LancheAPI.Repositories.Interfaces

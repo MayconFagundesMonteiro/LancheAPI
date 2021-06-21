@@ -1,5 +1,5 @@
-﻿using LancheAPI.Model.Base;
-using LancheAPI.Model.Context;
+﻿using LancheAPI.Models.Base;
+using LancheAPI.Models.Context;
 using LancheAPI.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;

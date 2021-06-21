@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace LancheAPI.Model.Context
+namespace LancheAPI.Models.Context
 {
     public class AppDbContext : DbContext
     {
@@ -9,5 +9,6 @@ namespace LancheAPI.Model.Context
         }
 
         public DbSet<Usuario> Usuarios { get; set; }
+        public DbSet<Lanche> Lanches { get; set; }
     }
 }

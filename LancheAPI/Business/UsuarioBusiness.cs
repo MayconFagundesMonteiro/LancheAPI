@@ -1,5 +1,5 @@
 ﻿using LancheAPI.Business.Interfaces;
-using LancheAPI.Model;
+using LancheAPI.Models;
 using LancheAPI.Repositories.Interfaces;
 using System.Collections.Generic;
 

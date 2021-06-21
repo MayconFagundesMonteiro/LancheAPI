@@ -1,6 +1,5 @@
 ﻿using LancheAPI.Business.Interfaces;
-using LancheAPI.Model;
-using LancheAPI.Repositories.Interfaces;
+using LancheAPI.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LancheAPI.Controllers

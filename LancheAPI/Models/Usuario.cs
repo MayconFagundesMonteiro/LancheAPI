@@ -1,7 +1,7 @@
-﻿using LancheAPI.Model.Base;
+﻿using LancheAPI.Models.Base;
 using System.ComponentModel.DataAnnotations;
 
-namespace LancheAPI.Model
+namespace LancheAPI.Models
 {
     public class Usuario : BaseEntity
     {
