@@ -1,14 +1,14 @@
-﻿using LancheAPI.Models;
+﻿using LancheAPI.Data.VO;
 using System.Collections.Generic;
 
 namespace LancheAPI.Business.Interfaces
 {
     public interface ILancheBusiness
     {
-        Lanche CriarLanche(Lanche lanche);
-        Lanche AtualizarLanche(Lanche lanche);
-        List<Lanche> ListarTodosLanches();
+        LancheVO CriarLanche(LancheVO lanche);
+        LancheVO AtualizarLanche(LancheVO lanche);
+        List<LancheVO> ListarTodosLanches();
         void DeletarLanche(int id);
-        Lanche EncontrarPorId(int id);
+        LancheVO EncontrarPorId(int id);
     }
 }

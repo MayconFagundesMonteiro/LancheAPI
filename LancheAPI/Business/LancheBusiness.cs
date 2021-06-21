@@ -1,4 +1,6 @@
 ﻿using LancheAPI.Business.Interfaces;
+using LancheAPI.Data.Converter;
+using LancheAPI.Data.VO;
 using LancheAPI.Models;
 using LancheAPI.Repositories.Interfaces;
 using System.Collections.Generic;
@@ -8,20 +10,26 @@ namespace LancheAPI.Business
     public class LancheBusiness : ILancheBusiness
     {
         private readonly IGenericRepository<Lanche> _repository;
+        private readonly LancheConverter _converter;
 
         public LancheBusiness(IGenericRepository<Lanche> repository)
         {
             _repository = repository;
+            _converter = new LancheConverter();
         }
 
-        public Lanche AtualizarLanche(Lanche lanche)
+        public LancheVO AtualizarLanche(LancheVO lanche)
         {
-           return _repository.Atualizar(lanche);
+            var lancheEntity = _converter.Parse(lanche);
+            lancheEntity = _repository.Atualizar(lancheEntity);
+            return _converter.Parse(lancheEntity);
         }
 
-        public Lanche CriarLanche(Lanche lanche)
+        public LancheVO CriarLanche(LancheVO lanche)
         {
-            return _repository.Criar(lanche);
+            var lacheEntity = _converter.Parse(lanche);
+            lacheEntity = _repository.Criar(lacheEntity);
+            return _converter.Parse(lacheEntity);
         }
 
         public void DeletarLanche(int id)
@@ -29,14 +37,14 @@ namespace LancheAPI.Business
             _repository.Deletar(id);
         }
 
-        public Lanche EncontrarPorId(int id)
+        public LancheVO EncontrarPorId(int id)
         {
-            return _repository.EncontrarPorId(id);
+            return _converter.Parse(_repository.EncontrarPorId(id));
         }
 
-        public List<Lanche> ListarTodosLanches()
+        public List<LancheVO> ListarTodosLanches()
         {
-            return _repository.ListarTodos();
+            return _converter.Parse(_repository.ListarTodos());
         }
     }
 }

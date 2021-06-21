@@ -1,5 +1,5 @@
 ﻿using LancheAPI.Business.Interfaces;
-using LancheAPI.Models;
+using LancheAPI.Data.VO;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LancheAPI.Controllers
@@ -24,14 +24,14 @@ namespace LancheAPI.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post([FromBody] Usuario usuario) //Cria um novo Usuario
+        public IActionResult Post([FromBody] UsuarioVO usuario) //Cria um novo Usuario
         {
             if (usuario == null) return BadRequest();
             return Ok(_usuarioBusiness.CriarUsuario(usuario));
         }
 
         [HttpPut]
-        public IActionResult Put([FromBody] Usuario usuario) //Atualiza Cadastro Usuario
+        public IActionResult Put([FromBody] UsuarioVO usuario) //Atualiza Cadastro Usuario
         {
             if (usuario == null) return BadRequest();
             return Ok(_usuarioBusiness.AtualizarUsuario(usuario));

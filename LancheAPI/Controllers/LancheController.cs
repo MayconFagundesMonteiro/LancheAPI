@@ -1,5 +1,5 @@
 ﻿using LancheAPI.Business.Interfaces;
-using LancheAPI.Models;
+using LancheAPI.Data.VO;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LancheAPI.Controllers
@@ -32,14 +32,14 @@ namespace LancheAPI.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post ([FromBody] Lanche lanche)
+        public IActionResult Post ([FromBody] LancheVO lanche)
         {
             if (lanche == null) return BadRequest();
             return Ok(_lancheBusiness.CriarLanche(lanche));
         }
 
         [HttpPut]
-        public IActionResult Put ([FromBody] Lanche lanche)
+        public IActionResult Put ([FromBody] LancheVO lanche)
         {
             if (lanche == null) return BadRequest();
             return Ok(_lancheBusiness.AtualizarLanche(lanche));
