@@ -1,15 +1,16 @@
 ﻿using LancheAPI.Data.VO;
+using LancheAPI.Models;
 using System.Collections.Generic;
 
 namespace LancheAPI.Business.Interfaces
 {
     public interface IUsuarioBusiness
     {
-        UsuarioVO CriarUsuario(UsuarioVO usuario);
+        Usuario CriarUsuario(Usuario usuario);
         UsuarioVO AtualizarUsuario(UsuarioVO usuario);
         List<UsuarioVO> ListarTodosUsuarios();
         void DeletarUsuarios(int id);
         UsuarioVO EncontrarPorId(int id);
-        UsuarioVO Login(UsuarioVO usuarioVO);
+        Usuario Login(Usuario usuarioVO);
     }
 }

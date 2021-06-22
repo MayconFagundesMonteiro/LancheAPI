@@ -11,7 +11,7 @@ namespace LancheAPI.Repositories
 
         public Usuario Login(Usuario usuario)
         {
-            var result = _context.Usuarios.SingleOrDefault(x => x.Nome.Equals(usuario.Nome) && x.Senha.Equals(usuario.Senha));
+            var result = _context.Usuarios.SingleOrDefault(x => x.Email.Equals(usuario.Email) && x.Senha.Equals(usuario.Senha));
             if (result == null) return null;
             return result;
         }

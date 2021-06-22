@@ -1,6 +1,7 @@
 ﻿using LancheAPI.Business.Interfaces;
 using LancheAPI.Data.Converter;
 using LancheAPI.Data.VO;
+using LancheAPI.Models;
 using LancheAPI.Repositories.Interfaces;
 using System.Collections.Generic;
 
@@ -23,11 +24,9 @@ namespace LancheAPI.Business
             return _converter.Parse(usuariosEntity); // Devolve como VO
         }
 
-        public UsuarioVO CriarUsuario(UsuarioVO usuario)
+        public Usuario CriarUsuario(Usuario usuario)
         {
-            var usuarioEntity = _converter.Parse(usuario);
-            usuarioEntity = _repository.Criar(usuarioEntity);
-            return _converter.Parse(usuarioEntity);
+            return _repository.Criar(usuario);
         }
 
         public void DeletarUsuarios(int id)
@@ -45,11 +44,9 @@ namespace LancheAPI.Business
             return _converter.Parse(_repository.ListarTodos());
         }
 
-        public UsuarioVO Login(UsuarioVO usuarioVO)
+        public Usuario Login(Usuario usuario)
         {
-            var usuaroEntity = _converter.Parse(usuarioVO);
-            usuaroEntity = _repository.Login(usuaroEntity);
-            return _converter.Parse(usuaroEntity);
+            return _repository.Login(usuario);
         }
     }
 }

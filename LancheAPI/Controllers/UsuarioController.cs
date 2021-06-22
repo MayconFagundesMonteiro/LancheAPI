@@ -1,7 +1,12 @@
 ﻿using LancheAPI.Business.Interfaces;
 using LancheAPI.Data.VO;
+using LancheAPI.Models;
+using LancheAPI.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
+using System.Threading.Tasks;
+using static LancheAPI.Models.ViewModels.UsuarioViewModel;
 
 namespace LancheAPI.Controllers
 {
@@ -18,6 +23,7 @@ namespace LancheAPI.Controllers
             _usuarioBusiness = usuarioBisiness;
         }
 
+        [Authorize(Roles ="admin")]
         [HttpGet]
         public IActionResult Get() //Lista todos os usuarios cadastrados
         {
@@ -25,12 +31,34 @@ namespace LancheAPI.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post([FromBody] UsuarioVO usuario) //Cria um novo Usuario
+        [Route("CriarConta")]
+        public async Task<ActionResult<dynamic>> Post([FromBody] RegisterUsuarioViewModel registerVM)  //Após ter feito vi que poderia ter usado o mesmo VO para validar o model, e ter passado boa parte do codigo para o Business ou para o Repository onde faz mais sentido.
         {
-            if (!ModelState.IsValid || usuario == null) return BadRequest(ModelState.Values.SelectMany(x => x.Errors));
-            return Ok(_usuarioBusiness.CriarUsuario(usuario));
+            if (!ModelState.IsValid) return BadRequest(ModelState.Values.SelectMany(x => x.Errors));  // Mas é sempre assim, quando você termina vê que poderia ter feito de forma melhor.
+            var usuario = new Usuario()
+            {
+                Nome = registerVM.Nome,
+                Sobrenome = registerVM.Sobrenome,
+                Email = registerVM.Email,
+                Senha = registerVM.Senha,
+                Role = registerVM.Role,
+                Endereco = registerVM.Endereco,
+                Complemento = registerVM.Complemento,
+                NumeroResidencia = registerVM.NumeroResidencia
+                
+            };
+            usuario = _usuarioBusiness.CriarUsuario(usuario);
+            var token = TokenService.GenerateToken(usuario);
+            usuario.Senha = "";
+            usuario.Role = "";
+            return new
+            {
+                usuario = usuario,
+                token = token
+            };
         }
 
+        [Authorize(Roles ="admin")]
         [HttpPut]
         public IActionResult Put([FromBody] UsuarioVO usuario) //Atualiza Cadastro Usuario
         {
@@ -38,6 +66,7 @@ namespace LancheAPI.Controllers
             return Ok(_usuarioBusiness.AtualizarUsuario(usuario));
         }
 
+        [Authorize(Roles ="admin")]
         [HttpDelete("{id}")]
         public IActionResult Delete(int id) //Deleta Usuarios
         {
@@ -45,6 +74,7 @@ namespace LancheAPI.Controllers
             return NoContent();
         }
 
+        [Authorize(Roles ="admin")]
         [HttpGet("{id}")]
         public IActionResult Get(int id) //Encontra Usuario por ID
         {
@@ -56,11 +86,26 @@ namespace LancheAPI.Controllers
             return Ok(usuario);
         }
 
-        [HttpPost("login")]
-        public IActionResult Login([FromBody] UsuarioVO usuarioVO)
+        [HttpPost]
+        [Route("Login")]
+        public async Task<ActionResult<dynamic>> Login([FromBody] LoginUsuarioViewModel LoginVM)
         {
-            if (usuarioVO == null) return BadRequest(new { message = "Usuario ou senha Invalidos" });
-            return Ok(_usuarioBusiness.Login(usuarioVO));
+            if (!ModelState.IsValid) return BadRequest(ModelState.Values.SelectMany(x => x.Errors));
+            var usuario = new Usuario()
+            {
+                Email = LoginVM.Email,
+                Senha = LoginVM.Senha
+            };
+            usuario = _usuarioBusiness.Login(usuario);
+            if (usuario == null) return BadRequest(new { message = "Usuario ou senha inválidos" });
+            var token = TokenService.GenerateToken(usuario);
+            usuario.Senha = "";
+            usuario.Role = "";
+            return new
+            {
+                usuario = usuario,
+                token = token
+            };
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using LancheAPI.Business.Interfaces;
 using LancheAPI.Data.VO;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,8 @@ namespace LancheAPI.Controllers
     [ApiController]
     [ApiVersion("1")]
     [Route("api/[controller]/v{version:apiVersion}")]
+    [Authorize(Roles = "employee, admin")]
+
     public class LancheController : Controller
     {
         private readonly ILancheBusiness _lancheBusiness;
@@ -23,6 +26,7 @@ namespace LancheAPI.Controllers
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
+        [AllowAnonymous]
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
@@ -35,6 +39,7 @@ namespace LancheAPI.Controllers
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
+        [AllowAnonymous]
         [HttpGet]
         public IActionResult Get()
         {
@@ -48,7 +53,7 @@ namespace LancheAPI.Controllers
         [HttpPost]
         public IActionResult Post ([FromBody] LancheVO lanche)
         {
-            if (!ModelState.IsValid || lanche == null) return BadRequest(ModelState.Values.SelectMany(x => x.Errors));
+            if (!ModelState.IsValid) return BadRequest(ModelState.Values.SelectMany(x => x.Errors));
             return Ok(_lancheBusiness.CriarLanche(lanche));
         }
 
