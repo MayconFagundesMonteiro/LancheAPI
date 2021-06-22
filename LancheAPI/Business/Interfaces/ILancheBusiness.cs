@@ -10,5 +10,6 @@ namespace LancheAPI.Business.Interfaces
         List<LancheVO> ListarTodosLanches();
         void DeletarLanche(int id);
         LancheVO EncontrarPorId(int id);
+        List<LancheVO> EncontrarPorNome(string Nome);
     }
 }

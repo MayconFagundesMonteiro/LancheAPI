@@ -48,6 +48,17 @@ namespace LancheAPI.Controllers
         }
 
         [ProducesResponseType((200), Type = typeof(LancheVO))]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
+        [HttpGet("EncontrarPorNome")]
+        public IActionResult EncontrarPorNome([FromQuery] string nome)
+        {
+            if (nome == null) return NotFound(new { message="Nenhum Produto Encontrado." });
+            return Ok(_lancheBusiness.EncontrarPorNome(nome));
+        }
+
+        [ProducesResponseType((200), Type = typeof(LancheVO))]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
         [HttpPost]

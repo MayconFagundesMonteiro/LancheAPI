@@ -9,10 +9,10 @@ namespace LancheAPI.Business
 {
     public class LancheBusiness : ILancheBusiness
     {
-        private readonly IGenericRepository<Lanche> _repository;
+        private readonly ILancheRepository _repository;
         private readonly LancheConverter _converter;
 
-        public LancheBusiness(IGenericRepository<Lanche> repository)
+        public LancheBusiness(ILancheRepository repository)
         {
             _repository = repository;
             _converter = new LancheConverter();
@@ -40,6 +40,11 @@ namespace LancheAPI.Business
         public LancheVO EncontrarPorId(int id)
         {
             return _converter.Parse(_repository.EncontrarPorId(id));
+        }
+
+        public List<LancheVO> EncontrarPorNome(string Nome)
+        {
+            return _converter.Parse(_repository.EncontrarPorNome(Nome));
         }
 
         public List<LancheVO> ListarTodosLanches()
