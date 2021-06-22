@@ -1,6 +1,7 @@
 ﻿using LancheAPI.Business.Interfaces;
 using LancheAPI.Data.VO;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 
 namespace LancheAPI.Controllers
 {
@@ -26,7 +27,7 @@ namespace LancheAPI.Controllers
         [HttpPost]
         public IActionResult Post([FromBody] UsuarioVO usuario) //Cria um novo Usuario
         {
-            if (usuario == null) return BadRequest();
+            if (!ModelState.IsValid || usuario == null) return BadRequest(ModelState.Values.SelectMany(x => x.Errors));
             return Ok(_usuarioBusiness.CriarUsuario(usuario));
         }
 
@@ -53,6 +54,13 @@ namespace LancheAPI.Controllers
                 return NotFound();
             }
             return Ok(usuario);
+        }
+
+        [HttpPost("login")]
+        public IActionResult Login([FromBody] UsuarioVO usuarioVO)
+        {
+            if (usuarioVO == null) return BadRequest(new { message = "Usuario ou senha Invalidos" });
+            return Ok(_usuarioBusiness.Login(usuarioVO));
         }
     }
 }

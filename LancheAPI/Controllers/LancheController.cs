@@ -2,6 +2,7 @@
 using LancheAPI.Data.VO;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace LancheAPI.Controllers
 {
@@ -47,7 +48,7 @@ namespace LancheAPI.Controllers
         [HttpPost]
         public IActionResult Post ([FromBody] LancheVO lanche)
         {
-            if (lanche == null) return BadRequest();
+            if (!ModelState.IsValid || lanche == null) return BadRequest(ModelState.Values.SelectMany(x => x.Errors));
             return Ok(_lancheBusiness.CriarLanche(lanche));
         }
 

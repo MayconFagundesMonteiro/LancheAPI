@@ -7,6 +7,8 @@ namespace LancheAPI.Models
     {
         [Required]
         public string Nome { get; set; }
+        [Required]
+        public string Email { get; set; }
         public string Sobrenome { get; set; }
         public string Endereco { get; set; }
         public string Complemento { get; set; }
@@ -14,6 +16,6 @@ namespace LancheAPI.Models
         [Required]
         public string Senha { get; set; }
         [Required]
-        public int TipoConta { get; set; }
+        public string Role { get; set; }
     }
 }

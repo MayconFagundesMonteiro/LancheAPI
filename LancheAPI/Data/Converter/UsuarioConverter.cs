@@ -15,12 +15,13 @@ namespace LancheAPI.Data.Converter
             {
                 Id = origin.Id,
                 Nome = origin.Nome,
+                Email = origin.Email,
                 Sobrenome = origin.Sobrenome,
                 Endereco = origin.Endereco,
                 Complemento = origin.Complemento,
                 NumeroResidencia = origin.NumeroResidencia,
                 Senha = origin.Senha,
-                TipoConta = origin.TipoConta
+                Role = origin.Role
             };
         }
 
@@ -31,12 +32,13 @@ namespace LancheAPI.Data.Converter
             {
                 Id = origin.Id,
                 Nome = origin.Nome,
+                Email = origin.Email,
                 Sobrenome = origin.Sobrenome,
                 Endereco = origin.Endereco,
                 Complemento = origin.Complemento,
                 NumeroResidencia = origin.NumeroResidencia,
                 Senha = origin.Senha,
-                TipoConta = origin.TipoConta
+                Role = origin.Role
             };
         }
 

@@ -56,6 +56,10 @@ namespace LancheAPI.Migrations
                     b.Property<string>("Complemento")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Endereco")
                         .HasColumnType("nvarchar(max)");
 
@@ -66,15 +70,16 @@ namespace LancheAPI.Migrations
                     b.Property<int>("NumeroResidencia")
                         .HasColumnType("int");
 
+                    b.Property<string>("Role")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Senha")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Sobrenome")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("TipoConta")
-                        .HasColumnType("int");
 
                     b.HasKey("Id");
 

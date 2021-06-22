@@ -1,7 +1,6 @@
 ﻿using LancheAPI.Business.Interfaces;
 using LancheAPI.Data.Converter;
 using LancheAPI.Data.VO;
-using LancheAPI.Models;
 using LancheAPI.Repositories.Interfaces;
 using System.Collections.Generic;
 
@@ -9,10 +8,10 @@ namespace LancheAPI.Business
 {
     public class UsuarioBusiness : IUsuarioBusiness
     {
-        private readonly IGenericRepository<Usuario> _repository;
+        private readonly IUsuarioRepository _repository;
         private readonly UsuarioConverter _converter;
 
-        public UsuarioBusiness(IGenericRepository<Usuario> repository)
+        public UsuarioBusiness(IUsuarioRepository repository)
         {
             _repository = repository;
             _converter = new UsuarioConverter();
@@ -44,6 +43,13 @@ namespace LancheAPI.Business
         public List<UsuarioVO> ListarTodosUsuarios()
         {
             return _converter.Parse(_repository.ListarTodos());
+        }
+
+        public UsuarioVO Login(UsuarioVO usuarioVO)
+        {
+            var usuaroEntity = _converter.Parse(usuarioVO);
+            usuaroEntity = _repository.Login(usuaroEntity);
+            return _converter.Parse(usuaroEntity);
         }
     }
 }

@@ -39,6 +39,7 @@ namespace LancheAPI
             services.AddApiVersioning();
             services.AddScoped<IUsuarioBusiness, UsuarioBusiness>();
             services.AddScoped<ILancheBusiness, LancheBusiness>();
+            services.AddScoped<IUsuarioRepository, UsuarioRepository>();
             services.AddScoped(typeof(IGenericRepository<>),typeof(GenericRepository<>));
             services.AddMvc(options =>
             {

@@ -10,7 +10,7 @@ namespace LancheAPI.Repositories
 {
     public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
     {
-        private readonly AppDbContext _context;
+        protected readonly AppDbContext _context;
         private readonly DbSet<T> dataSet;
 
         public GenericRepository(AppDbContext context)

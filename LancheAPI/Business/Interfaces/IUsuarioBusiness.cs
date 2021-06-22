@@ -10,5 +10,6 @@ namespace LancheAPI.Business.Interfaces
         List<UsuarioVO> ListarTodosUsuarios();
         void DeletarUsuarios(int id);
         UsuarioVO EncontrarPorId(int id);
+        UsuarioVO Login(UsuarioVO usuarioVO);
     }
 }
