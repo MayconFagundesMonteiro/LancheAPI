@@ -1,10 +1,8 @@
 ﻿using LancheAPI.Models;
 using LancheAPI.Models.Context;
 using LancheAPI.Repositories.Interfaces;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace LancheAPI.Repositories
 {
@@ -12,9 +10,14 @@ namespace LancheAPI.Repositories
     {
         public LancheRepository(AppDbContext context) : base(context) {}
 
-        public List<Lanche> EncontrarPorNome(string Nome)
+        public List<Lanche> EncontrarPorNome(string nome)
         {
-            return _context.Lanches.Where(l => l.Nome.ToLower().Contains(Nome.ToLower())).ToList();
+            return _context.Lanches.Where(l => l.Nome.ToLower().Contains(nome.ToLower())).ToList();
+        }
+
+        public List<Lanche> LanchesPorCategoria(string categoria)
+        {
+            return _context.Lanches.Where(l => l.Categoria.ToLower().Contains(categoria.ToLower())).ToList();
         }
     }
 }

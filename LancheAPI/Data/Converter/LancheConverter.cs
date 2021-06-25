@@ -18,7 +18,8 @@ namespace LancheAPI.Data.Converter
                 DescricaoCurta = origin.DescricaoCurta,
                 UrlCapa = origin.UrlCapa,
                 UrlImagem = origin.UrlImagem,
-                Preco = origin.Preco
+                Preco = origin.Preco,
+                Categoria = origin.Categoria
             };
         }
 
@@ -32,7 +33,8 @@ namespace LancheAPI.Data.Converter
                 DescricaoCurta = origin.DescricaoCurta,
                 UrlCapa = origin.UrlCapa,
                 UrlImagem = origin.UrlImagem,
-                Preco = origin.Preco
+                Preco = origin.Preco,
+                Categoria = origin.Categoria
             };
         }
 

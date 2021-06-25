@@ -39,6 +39,8 @@ namespace LancheAPI
             services.AddScoped<ILancheBusiness, LancheBusiness>();
             services.AddScoped<IUsuarioRepository, UsuarioRepository>();
             services.AddScoped<ILancheRepository, LancheRepository>();
+            services.AddScoped<IVendaRepository, VendaRepository>();
+            services.AddScoped<IVendaBusiness, VendaBusiness>();
             services.AddScoped(typeof(IGenericRepository<>),typeof(GenericRepository<>));
 
             //JWT

@@ -26,7 +26,6 @@ namespace LancheAPI.Controllers
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        [AllowAnonymous]
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
@@ -86,6 +85,17 @@ namespace LancheAPI.Controllers
         {
             _lancheBusiness.DeletarLanche(id);
             return NoContent();
+        }
+
+        [ProducesResponseType((200), Type = typeof(List<LancheVO>))]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
+        [AllowAnonymous]
+        [HttpGet("PorCategoria")]
+        public IActionResult PorCategoria([FromQuery] string categoria)
+        {
+            var lanches = _lancheBusiness.LanchesPorCategoria(categoria);
+            return Ok(lanches);
         }
     }
 }

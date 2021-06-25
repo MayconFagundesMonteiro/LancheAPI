@@ -12,6 +12,7 @@ namespace LancheAPI.Models
         [Required]
         [Column(TypeName = "decimal(18,2)")]
         public decimal Preco { get; set; }
+        public string Categoria { get; set; }
         public string UrlCapa { get; set; }
         public string UrlImagem { get; set; }
     }

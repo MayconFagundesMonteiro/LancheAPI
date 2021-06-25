@@ -5,6 +5,7 @@ namespace LancheAPI.Repositories.Interfaces
 {
     public interface ILancheRepository : IGenericRepository<Lanche>
     {
-        List<Lanche> EncontrarPorNome(string Nome);
+        List<Lanche> EncontrarPorNome(string nome);
+        List<Lanche> LanchesPorCategoria(string categoria);
     }
 }

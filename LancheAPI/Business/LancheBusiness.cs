@@ -1,7 +1,6 @@
 ﻿using LancheAPI.Business.Interfaces;
 using LancheAPI.Data.Converter;
 using LancheAPI.Data.VO;
-using LancheAPI.Models;
 using LancheAPI.Repositories.Interfaces;
 using System.Collections.Generic;
 
@@ -45,6 +44,11 @@ namespace LancheAPI.Business
         public List<LancheVO> EncontrarPorNome(string Nome)
         {
             return _converter.Parse(_repository.EncontrarPorNome(Nome));
+        }
+
+        public List<LancheVO> LanchesPorCategoria(string categoria)
+        {
+            return _converter.Parse(_repository.LanchesPorCategoria(categoria));
         }
 
         public List<LancheVO> ListarTodosLanches()

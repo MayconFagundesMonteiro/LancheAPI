@@ -10,6 +10,7 @@ namespace LancheAPI.Data.VO
         public string DescricaoCurta { get; set; }
         [Required(ErrorMessage = "O Campo {0} é obrigatorio")]
         public decimal Preco { get; set; }
+        public string Categoria { get; set; }
         public string UrlCapa { get; set; }
         public string UrlImagem { get; set; }
     }
