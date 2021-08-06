@@ -50,7 +50,6 @@ namespace LancheAPI.Controllers
             usuario = _usuarioBusiness.CriarUsuario(usuario);
             var token = TokenService.GenerateToken(usuario);
             usuario.Senha = "";
-            usuario.Role = "";
             return new
             {
                 usuario = usuario,
@@ -100,7 +99,6 @@ namespace LancheAPI.Controllers
             if (usuario == null) return BadRequest(new { message = "Usuario ou senha inválidos" });
             var token = TokenService.GenerateToken(usuario);
             usuario.Senha = "";
-            usuario.Role = "";
             return new
             {
                 usuario = usuario,

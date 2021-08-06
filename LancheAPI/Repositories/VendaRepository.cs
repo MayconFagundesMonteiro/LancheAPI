@@ -94,7 +94,7 @@ namespace LancheAPI.Repositories
                     _context.VendaItens.Add(vendaItens);
                     var lancheResult = _context.Lanches.SingleOrDefault(l => l.Id.Equals(vendaItens.IdLanche));
                     if (lancheResult == null) return null;
-                    venda.Total += lancheResult.Preco;
+                    venda.Total += lancheResult.Preco * vendaItens.Quantidade;
                 }
 
                 _context.Venda.Add(venda);

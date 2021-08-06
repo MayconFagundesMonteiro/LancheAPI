@@ -50,6 +50,7 @@ namespace LancheAPI.Controllers
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
+        [AllowAnonymous]
         [HttpGet("EncontrarPorNome")]
         public IActionResult EncontrarPorNome([FromQuery] string nome)
         {
