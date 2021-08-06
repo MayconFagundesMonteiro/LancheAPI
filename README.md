@@ -20,7 +20,7 @@ Você pode fazer essa alteração no arquivo appsettings.json.
 
 ## 🔗 Links Úteis
 * [Projeto original, feito em Asp.Net Core MVC](https://github.com/MayconFagundesMonteiro/LanchesMacMVC)
-* [Front-end em React.js]()
+* [Front-end em React.js](https://github.com/MayconFagundesMonteiro/Lanche-React)
 * Versão mobile (Em breve)
 
 ---
