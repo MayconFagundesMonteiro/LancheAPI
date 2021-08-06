@@ -1,9 +1,9 @@
 <h1 align="center">LancheAPI</h1>
-<h1><img src="https://ik.imagekit.io/xguomcqgelu/LancheAPI_91_vkMG1w.gif"/></h1>
+<h1><img src="https://ik.imagekit.io/xguomcqgelu/LancheAPI_Swargger_auT2TI0bf.png?updatedAt=1628221338501"/></h1>
 
 ## 📚 Sobre
 
-A algum tempo fiz um [e-commerce em Asp.Net Core MVC](https://github.com/MayconFagundesMonteiro/LanchesMacMVC), mas após meus estudos em APi Restful não tinha criado nada pra colocar meus conhecimentos em prática, então porque não criar uma API do meu projeto anterior ?
+Há algum tempo fiz um [e-commerce em Asp.Net Core MVC](https://github.com/MayconFagundesMonteiro/LanchesMacMVC), mas após meus estudos em APi Restful não tinha criado nada pra colocar meus conhecimentos em prática, então porque não criar uma API do meu projeto anterior ?
 
 ---
 
@@ -18,9 +18,10 @@ Você pode fazer essa alteração no arquivo appsettings.json.
 
 ---
 
-## 🔍 Funcionalidades
-
-Como disse anteriormente o projeto de trata de uma api do meu [projeto anterior](https://github.com/MayconFagundesMonteiro/LanchesMacMVC), tendo todas as funcionalidades que o anterior tinha, para completar essa missão ainda pretendo trazer o front-end do mesmo em react.js, e futuramente uma versão mobile.
+## 🔗 Links Úteis
+* [Projeto original, feito em Asp.Net Core MVC](https://github.com/MayconFagundesMonteiro/LanchesMacMVC)
+* [Front-end em React.js]()
+* Versão mobile (Em breve)
 
 ---
 ## Agradeço por ter vindo 😁✌👍

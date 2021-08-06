@@ -78,10 +78,10 @@ namespace LancheAPI
                     {
                         Title = "LancheAPI",
                         Version = "v1",
-                        Description = "API Rest simples, tendo como exemplo venda de lanches online.",
+                        Description = "Lanche API - API Rest simples, tendo como exemplo um e-commerce.",
                         Contact = new OpenApiContact
                         {
-                            Name = "Maycon Fagundes",
+                            Name = "Maycon Fagundes Monteiro",
                             Url = new Uri("https://www.linkedin.com/in/maycon-fagundes-349538205")
                         }
                     });
@@ -104,7 +104,7 @@ namespace LancheAPI
 
             app.UseSwaggerUI(c => {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json",
-                    "Lanche API - API Rest simples, tendo como exemplo venda de lanches online.");
+                    "Lanche API - API Rest simples, tendo como exemplo um e-commerce.");
             });
 
             var option = new RewriteOptions();
